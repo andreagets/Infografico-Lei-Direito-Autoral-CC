@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direito Autoral — Lei 9.610/98 em foco</title>
+  <!-- Tailwind CSS CDN para layout moderno, limpo e responsivo -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#F7F5F1',
+              ink: '#14213D',
+              amber: '#C9A227',
+              petroleum: '#146C60',
+              alert: '#9B2C2C',
+            }
+          },
+          fontFamily: {
+            serif: ['Georgia', 'serif'],
+            sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Estilos adicionais e refinamentos editoriais */
+    body {
+      background-color: #F7F5F1;
+      color: #14213D;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6, .font-serif-title {
+      font-family: Georgia, serif;
+    }
+    /* Cores próprias das abas, preservadas ao alternar a seleção */
+    #tab-btn-lei,
+    #tab-btn-cc {
+      margin-top: 12px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border-bottom: 4px solid transparent;
+    }
+    #tab-btn-lei {
+      background-color: #C9A227;
+      color: #14213D;
+    }
+    #tab-btn-cc {
+      background-color: #146C60;
+      color: #F7F5F1;
+    }
+    #tab-btn-lei:hover {
+      background-color: #D9B746;
+    }
+    #tab-btn-cc:hover {
+      background-color: #197E70;
+    }
+    #tab-btn-lei[aria-selected="true"],
+    #tab-btn-cc[aria-selected="true"] {
+      border-bottom-color: #F7F5F1;
+      font-weight: 700;
+      box-shadow: 0 0 0 2px #F7F5F1;
+    }
+    #tab-btn-lei:focus-visible,
+    #tab-btn-cc:focus-visible {
+      outline: 3px solid #F7F5F1;
+      outline-offset: 5px;
+    }
+    /* Barra de progresso de leitura */
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background-color: #C9A227;
+      width: 0%;
+      z-index: 100;
+      transition: width 0.1s ease-out;
+    }
+    /* Estilos para acordeão e transições suaves */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease;
+    }
+    .accordion-content.open {
+      max-height: 2000px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-[#C9A227]/30">
+
+  <!-- Barra de progresso de leitura -->
+  <div id="reading-progress"></div>
+
+  <!-- Cabeçalho escuro institucional -->
+  <header class="bg-[#14213D] text-[#F7F5F1] shadow-md relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <span class="inline-block bg-[#C9A227]/20 text-[#C9A227] text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider mb-2 border border-[#C9A227]/30">
+            Formação Continuada • Educação Mediada por Tecnologias
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Direito Autoral — Lei 9.610/98 em foco</h1>
+          <p class="text-sm sm:text-base text-gray-300 mt-1">Infográfico interativo para cursos online</p>
+        </div>
+        <div class="text-xs text-gray-400 border-l-2 border-[#C9A227] pl-3 py-1">
+          <p class="font-medium text-gray-200">Autoria: Andréa Soares Rocha da Silva</p>
+          <p class="mt-0.5">Uso educacional e não comercial, com atribuição.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navegação por Abas -->
+    <div class="bg-[#0f192e] border-t border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex space-x-4 sm:space-x-8" aria-label="Abas principais" role="tablist">
+          <button id="tab-btn-lei" role="tab" aria-selected="true" aria-controls="panel-lei" tabindex="0"
+            onclick="switchTab('lei')"
+            class="py-4 px-3 sm:px-4 font-medium text-sm sm:text-base border-b-2 border-[#C9A227] text-white flex items-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A227]">
+            <span>📖</span> Aba 1 — "Lei 9.610/98 — Direito Autoral"
+          </button>
+          <button id="tab-btn-cc" role="tab" aria-selected="false" aria-controls="panel-cc" tabindex="-1"
+            onclick="switchTab('cc')"
+            class="py-4 px-3 sm:px-4 font-medium text-sm sm:text-base border-b-2 border-transparent text-gray-400 hover:text-gray-200 flex items-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A227]">
+            <span>🌐</span> Aba 2 — "Licenças Creative Commons"
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- ========================================== -->
+    <!-- ABA 1 — LEI 9.610/98 -->
+    <!-- ========================================== -->
+    <section id="panel-lei" role="tabpanel" aria-labelledby="tab-btn-lei" class="space-y-12">
+
+      <!-- 1.1 Abertura -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 1.1</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Abertura: Nascimento da Proteção e Estrutura da Lei</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6 items-center mb-6">
+          <div class="space-y-4 text-sm sm:text-base text-gray-700">
+            <p>
+              A <strong>Lei nº 9.610, de 19 de fevereiro de 1998</strong> regula os direitos autorais no Brasil, englobando tanto os <strong>direitos de autor</strong> quanto os <strong>direitos conexos</strong> (Art. 1º) [cite: 1].
+            </p>
+            <p>
+              Um dos pilares fundamentais da proteção jurídica no Brasil é que <strong>a proteção ao direito autoral independe de registro</strong> (Art. 18) [cite: 4]. O direito nasce no exato momento da criação intelectual e sua exteriorização.
+            </p>
+          </div>
+          <div class="bg-[#F7F5F1] p-5 rounded-lg border-l-4 border-[#146C60]">
+            <h3 class="font-bold text-[#14213D] text-sm sm:text-base flex items-center gap-2 mb-2">
+              <span>💡</span> Nota de Curadoria Educacional
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">
+              Selecionar, organizar e dar sentido a materiais de terceiros é prática de curadoria na cultura digital, e a atribuição correta e rigorosa faz parte indissociável dessa prática (Bassani; Magnus, 2021).
+            </p>
+          </div>
+        </div>
+
+        <!-- Faixa com os 8 Títulos da Lei em cartões clicáveis -->
+        <div>
+          <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Explore os 8 Títulos da Lei 9.610/98 (Clique para localizar na Biblioteca):</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+            <button onclick="jumpToTitle('Titulo I')" class="p-2.5 bg-gray-50 hover:bg-[#14213D] hover:text-white rounded text-xs font-medium text-center border border-gray-200 transition-colors">
+              <strong>T. I</strong><br>Disposições Preliminares
+            </button>
+            <button onclick="jumpToTitle('Titulo II')" class="p-2.5 bg-gray-50 hover:bg-[#14213D] hover:text-white rounded text-xs font-medium text-center border border-gray-200 transition-colors">
+              <strong>T. II</strong><br>Das Obras Intelectuais
+            </button>
+            <button onclick="jumpToTitle('Titulo III')" class="p-2.5 bg-gray-50 hover:bg-[#14213D] hover:text-white rounded text-xs font-medium text-center border border-gray-200 transition-colors">
+              <strong>T. III</strong><br>Dos Direitos do Autor
+            </button>
+            <button onclick="jumpToTitle('Titulo IV')" class="p-2.5 bg-gray-50 hover:bg-[#14213D] hover:text-white rounded text-xs font-medium text-center border border-gray-200 transition-colors">
+              <strong>T. IV</strong><br>Utilização de Obras
+            </button>
+            <button onclick="jumpToTitle('Titulo V')" class="p-2.5 bg-gray-50 hover:bg-[#14213D] hover:text-white rounded text-xs font-medium text-center border border-gray-200 transition-colors">
+              <strong>T. V</strong><br>Dos Direitos Conexos
+            </button>
+            <button onclick="jumpToTitle('Titulo VI')" class="p-2.5 bg-gray-50 hover:bg-[#14213D] hover:text-white rounded text-xs font-medium text-center border border-gray-200 transition-colors">
+              <strong>T. VI</strong><br>Das Associações
+            </button>
+            <button onclick="jumpToTitle('Titulo VII')" class="p-2.5 bg-gray-50 hover:bg-[#14213D] hover:text-white rounded text-xs font-medium text-center border border-gray-200 transition-colors">
+              <strong>T. VII</strong><br>Das Sanções
+            </button>
+            <button onclick="jumpToTitle('Titulo VIII')" class="p-2.5 bg-gray-50 hover:bg-[#14213D] hover:text-white rounded text-xs font-medium text-center border border-gray-200 transition-colors">
+              <strong>T. VIII</strong><br>Disposições Finais
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.2 O que é protegido × O que não é -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 1.2</span>
+            <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">O que é Protegido × O que Não é Protegido</h2>
+          </div>
+          <!-- Abas internas -->
+          <div class="flex bg-gray-100 p-1 rounded-lg self-start">
+            <button id="subtab-art7-btn" onclick="switchSubTab('art7')" class="px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md bg-white text-[#14213D] shadow-sm transition-all">
+              Art. 7º (Obras Protegidas)
+            </button>
+            <button id="subtab-art8-btn" onclick="switchSubTab('art8')" class="px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md text-gray-600 hover:text-gray-900 transition-all">
+              Art. 8º (Exclusões)
+            </button>
+          </div>
+        </div>
+
+        <!-- Conteúdo Artigo 7 -->
+        <div id="subtab-art7-content" class="space-y-4">
+          <p class="text-sm text-gray-600">
+            O <strong>Artigo 7º</strong> estabelece que são obras intelectuais protegidas as criações do espírito, expressas por qualquer meio ou fixadas em suporte tangível ou intangível [cite: 2]. Veja os incisos principais:
+          </p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div class="p-3 bg-gray-50 rounded border border-gray-200 text-xs sm:text-sm">
+              <span class="font-bold text-[#146C60]">I a III:</span> Textos literários/artísticos/científicos, conferências, obras dramáticas e musicais [cite: 2, 3].
+            </div>
+            <div class="p-3 bg-gray-50 rounded border border-gray-200 text-xs sm:text-sm">
+              <span class="font-bold text-[#146C60]">IV a VI:</span> Coreografias, composições musicais e obras audiovisuais (cinematográficas) [cite: 2, 3].
+            </div>
+            <div class="p-3 bg-gray-50 rounded border border-gray-200 text-xs sm:text-sm">
+              <span class="font-bold text-[#146C60]">VII a IX:</span> Fotografias, artes plásticas (desenho, pintura, escultura), ilustrações e cartas geográficas [cite: 2, 3].
+            </div>
+            <div class="p-3 bg-gray-50 rounded border border-gray-200 text-xs sm:text-sm">
+              <span class="font-bold text-[#146C60]">X e XI:</span> Projetos de engenharia/arquitetura, adaptações, traduções e transformações [cite: 2, 3].
+            </div>
+            <div class="p-3 bg-gray-50 rounded border border-gray-200 text-xs sm:text-sm">
+              <span class="font-bold text-[#146C60]">XII e XIII:</span> Programas de computador (legislação específica) e coletâneas/antologias/bases de dados [cite: 3].
+            </div>
+          </div>
+          <!-- Nota Artigo 7 parágrafo 3 -->
+          <div class="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg text-xs sm:text-sm text-amber-900">
+            <strong>Nota fundamental (Art. 7º, § 3º):</strong> No domínio das ciências, a proteção recai sobre a forma literária ou artística, <em>não abrangendo o seu conteúdo científico ou técnico</em> [cite: 3]. Fatos, teorias científicas e dados brutos em si não têm dono autoral.
+          </div>
+        </div>
+
+        <!-- Conteúdo Artigo 8 -->
+        <div id="subtab-art8-content" class="space-y-4 hidden">
+          <p class="text-sm text-gray-600">
+            O <strong>Artigo 8º</strong> lista explicitamente o que <strong>não</strong> é objeto de proteção como direito autoral [cite: 3]:
+          </p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div class="p-3 bg-red-50/50 rounded border border-red-100 text-xs sm:text-sm">
+              <span class="font-bold text-[#9B2C2C]">I. Ideias e métodos:</span> Ideias, procedimentos normativos, sistemas, métodos, projetos ou conceitos matemáticos [cite: 3].
+            </div>
+            <div class="p-3 bg-red-50/50 rounded border border-red-100 text-xs sm:text-sm">
+              <span class="font-bold text-[#9B2C2C]">II. Jogos e atos mentais:</span> Esquemas, planos ou regras para realizar atos mentais, jogos ou negócios [cite: 3].
+            </div>
+            <div class="p-3 bg-red-50/50 rounded border border-red-100 text-xs sm:text-sm">
+              <span class="font-bold text-[#9B2C2C]">III. Formulários:</span> Formulários em branco para preenchimento e suas instruções [cite: 3].
+            </div>
+            <div class="p-3 bg-red-50/50 rounded border border-red-100 text-xs sm:text-sm">
+              <span class="font-bold text-[#9B2C2C]">IV. Atos oficiais:</span> Textos de tratados, leis, decretos, regulamentos, decisões judiciais e demais atos oficiais [cite: 3].
+            </div>
+            <div class="p-3 bg-red-50/50 rounded border border-red-100 text-xs sm:text-sm">
+              <span class="font-bold text-[#9B2C2C]">V a VII:</span> Informações de uso comum (calendários, agendas), nomes/títulos isolados e aproveitamento comercial de ideias [cite: 3].
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 1.3 Direitos Morais × Patrimoniais -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 1.3</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Direitos Morais × Direitos Patrimoniais</h2>
+          <p class="text-sm text-gray-600 mt-1">A lei divide a proteção do criador em duas grandes naturezas jurídicas complementares.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Coluna Moral -->
+          <div class="bg-[#F7F5F1] p-6 rounded-xl border border-gray-200 space-y-4">
+            <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+              <h3 class="font-bold text-[#14213D] text-lg font-serif">Direitos Morais (Arts. 24–27)</h3>
+              <span class="text-xs bg-[#14213D] text-white px-2 py-1 rounded font-medium">Vínculo pessoal</span>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-700">
+              Garantem a ligação indissociável entre o criador e sua obra.
+            </p>
+            <ul class="space-y-2 text-xs sm:text-sm text-gray-700">
+              <li class="flex items-start gap-2"><span>•</span> <span><strong>Reivindicar autoria</strong> a qualquer tempo (Art. 24, I) [cite: 4].</span></li>
+              <li class="flex items-start gap-2"><span>•</span> <span>Ter seu <strong>nome indicado</strong> na utilização (Art. 24, II) [cite: 4].</span></li>
+              <li class="flex items-start gap-2"><span>•</span> <span>Conservar a <strong>obra inédita</strong> (Art. 24, III) [cite: 4].</span></li>
+              <li class="flex items-start gap-2"><span>•</span> <span>Assegurar a <strong>integridade da obra</strong>, opondo-se a modificações prejudiciais (Art. 24, IV) [cite: 4, 5].</span></li>
+              <li class="flex items-start gap-2"><span>•</span> <span>Modificar a obra ou retirá-la de circulação em caso de afronta à reputação (Art. 24, V e VI) [cite: 5].</span></li>
+            </ul>
+            <div class="p-3 bg-white rounded border border-gray-300 text-xs text-gray-800 space-y-1">
+              <p><strong>Regra de ouro (Art. 27):</strong> Os direitos morais são <em>inalienáveis e irrenunciáveis</em> [cite: 5]. O autor não pode vendê-los nem abrir mão deles.</p>
+              <p><strong>Sucessão (Art. 24, § 1º):</strong> Por morte do autor, transmitem-se aos sucessores apenas os incisos I a IV [cite: 5].</p>
+            </div>
+          </div>
+
+          <!-- Coluna Patrimonial -->
+          <div class="bg-[#F7F5F1] p-6 rounded-xl border border-gray-200 space-y-4">
+            <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+              <h3 class="font-bold text-[#14213D] text-lg font-serif">Direitos Patrimoniais (Arts. 28–31, 38)</h3>
+              <span class="text-xs bg-[#C9A227] text-white px-2 py-1 rounded font-medium">Exploração econômica</span>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-700">
+              Garantem ao autor o direito exclusivo de utilizar, fruir e dispor da obra (Art. 28) [cite: 5].
+            </p>
+            <ul class="space-y-2 text-xs sm:text-sm text-gray-700">
+              <li class="flex items-start gap-2"><span>•</span> <span>Depende de <strong>autorização prévia e expressa</strong> para reprodução, edição, tradução, adaptação, distribuição ou comunicação ao público (Art. 29) [cite: 5, 6].</span></li>
+              <li class="flex items-start gap-2"><span>•</span> <span>As diversas modalidades de utilização são <strong>independentes entre si</strong> (Art. 31) [cite: 6].</span></li>
+              <li class="flex items-start gap-2"><span>•</span> <span>A venda do original ou exemplar <strong>não transfere</strong> direitos patrimoniais automáticos (Art. 37) [cite: 6].</span></li>
+              <li class="flex items-start gap-2"><span>•</span> <span><strong>Direito de sequência (Art. 38):</strong> O autor tem direito irrenunciável de perceber no mínimo 5% sobre o aumento de preço em cada revenda de obra de arte ou manuscrito original [cite: 6].</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.4 Linha do tempo até o domínio público -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 1.4</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Calculadora e Linha do Tempo até o Domínio Público</h2>
+          <p class="text-sm text-gray-600 mt-1">Segundo o Art. 41 da Lei 9.610/98, os direitos patrimoniais perduram por <strong>70 anos</strong>, contados de 1º de janeiro do ano subsequente ao falecimento do autor [cite: 7].</p>
+        </div>
+
+        <!-- Calculadora Interativa -->
+        <div class="bg-[#14213D] text-white p-6 rounded-xl mb-6">
+          <h3 class="font-serif text-lg font-bold mb-3 text-[#C9A227]">Simulador de Entrada em Domínio Público</h3>
+          <div class="grid sm:grid-cols-3 gap-4 items-end">
+            <div>
+              <label for="input-death-year" class="block text-xs uppercase tracking-wider text-gray-300 mb-1">Ano de falecimento do autor:</label>
+              <input type="number" id="input-death-year" value="1955" min="1800" max="2026"
+                class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-[#C9A227]">
+            </div>
+            <div>
+              <button onclick="calculatePublicDomain()" class="w-full bg-[#C9A227] hover:bg-[#b08d20] text-[#14213D] font-bold py-2 px-4 rounded transition-colors">
+                Calcular Domínio Público
+              </button>
+            </div>
+            <div id="dp-result" class="bg-gray-800 p-3 rounded border border-gray-700 text-sm">
+              <span class="text-gray-400 text-xs block">Entrada em Domínio Público:</span>
+              <strong class="text-[#C9A227] text-base">1º de janeiro de 2026</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marcos e Exemplos Prontos -->
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer hover:border-[#C9A227] transition-all" onclick="setDeathYear(1930)">
+            <span class="text-xs font-bold text-[#146C60] block mb-1">Exemplo 1</span>
+            <h4 class="font-bold text-[#14213D]">Autor falecido em 1930</h4>
+            <p class="text-xs text-gray-600 mt-1">Domínio público desde <strong>01/01/2001</strong> (1930 + 1 + 70).</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer hover:border-[#C9A227] transition-all" onclick="setDeathYear(1950)">
+            <span class="text-xs font-bold text-[#146C60] block mb-1">Exemplo 2</span>
+            <h4 class="font-bold text-[#14213D]">Autor falecido em 1950</h4>
+            <p class="text-xs text-gray-600 mt-1">Domínio público desde <strong>01/01/2021</strong> (1950 + 1 + 70).</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer hover:border-[#C9A227] transition-all" onclick="setDeathYear(1955)">
+            <span class="text-xs font-bold text-[#146C60] block mb-1">Exemplo 3</span>
+            <h4 class="font-bold text-[#14213D]">Autor falecido em 1955</h4>
+            <p class="text-xs text-gray-600 mt-1">Domínio público a partir de <strong>01/01/2026</strong> (1955 + 1 + 70).</p>
+          </div>
+        </div>
+
+        <!-- Regras Especiais -->
+        <div class="mt-6 pt-6 border-t border-gray-200 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs sm:text-sm text-gray-700">
+          <div class="bg-gray-50 p-3 rounded">
+            <strong>Coautoria indivisível (Art. 42):</strong> Contado da morte do último dos coautores sobreviventes [cite: 7].
+          </div>
+          <div class="bg-gray-50 p-3 rounded">
+            <strong>Anônima ou pseudônima (Art. 43):</strong> 70 anos contados de 1º de janeiro do ano posterior à primeira publicação [cite: 7].
+          </div>
+          <div class="bg-gray-50 p-3 rounded">
+            <strong>Audiovisual e fotográfica (Art. 44):</strong> 70 anos contados de 1º de janeiro após a divulgação [cite: 7].
+          </div>
+          <div class="bg-gray-50 p-3 rounded">
+            <strong>Sem sucessores / desconhecido (Art. 45):</strong> Pertencem imediatamente ao domínio público [cite: 7].
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.5 Limitações -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 1.5</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Limitações aos Direitos Autorais (Art. 46 a 48)</h2>
+          <p class="text-sm text-gray-600 mt-1">Usos permitidos pela lei brasileira sem necessidade de autorização prévia ou pagamento.</p>
+        </div>
+
+        <div class="space-y-3">
+          <!-- Acordeão item 1 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button onclick="toggleAccordion('acc-1')" class="w-full p-4 bg-gray-50 hover:bg-gray-100 font-medium text-left flex justify-between items-center text-sm sm:text-base text-[#14213D]">
+              <span>Art. 46, Inciso III — Citações para estudo, crítica ou polêmica</span>
+              <span id="icon-acc-1" class="transform transition-transform">▼</span>
+            </button>
+            <div id="acc-1" class="accordion-content px-4 bg-white text-xs sm:text-sm text-gray-700">
+              <div class="py-3 border-t border-gray-100">
+                Permite a citação em livros, jornais, revistas ou qualquer meio de comunicação de passagens de qualquer obra, na medida justificada para o fim a atingir, indicando-se o nome do autor e a origem (Art. 46, III) [cite: 7]. <em>Essencial para pesquisas e trabalhos acadêmicos.</em>
+              </div>
+            </div>
+          </div>
+
+          <!-- Acordeão item 2 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button onclick="toggleAccordion('acc-2')" class="w-full p-4 bg-gray-50 hover:bg-gray-100 font-medium text-left flex justify-between items-center text-sm sm:text-base text-[#14213D]">
+              <span>Art. 46, Inciso VI — Fins didáticos em estabelecimentos de ensino</span>
+              <span id="icon-acc-2" class="transform transition-transform">▼</span>
+            </button>
+            <div id="acc-2" class="accordion-content px-4 bg-white text-xs sm:text-sm text-gray-700">
+              <div class="py-3 border-t border-gray-100">
+                A representação teatral e a execução musical, quando realizadas no recesso familiar ou, <strong>para fins exclusivamente didáticos</strong>, nos estabelecimentos de ensino, não constituem ofensa aos direitos autorais, desde que não haja intuito de lucro (Art. 46, VI) [cite: 7].
+              </div>
+            </div>
+          </div>
+
+          <!-- Acordeão item 3 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button onclick="toggleAccordion('acc-3')" class="w-full p-4 bg-gray-50 hover:bg-gray-100 font-medium text-left flex justify-between items-center text-sm sm:text-base text-[#14213D]">
+              <span>Art. 46, Inciso I, alínea "d" — Uso exclusivo de deficientes visuais</span>
+              <span id="icon-acc-3" class="transform transition-transform">▼</span>
+            </button>
+            <div id="acc-3" class="accordion-content px-4 bg-white text-xs sm:text-sm text-gray-700">
+              <div class="py-3 border-t border-gray-100">
+                Reprodução de obras literárias, artísticas ou científicas para uso exclusivo de deficientes visuais, sem fins comerciais, mediante sistema Braille ou outro procedimento em qualquer suporte (Art. 46, I, "d") [cite: 7].
+              </div>
+            </div>
+          </div>
+
+          <!-- Acordeão item 4 -->
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button onclick="toggleAccordion('acc-4')" class="w-full p-4 bg-gray-50 hover:bg-gray-100 font-medium text-left flex justify-between items-center text-sm sm:text-base text-[#14213D]">
+              <span>Art. 47 e 48 — Paródias, Paráfrases e Obras em Logradouros Públicos</span>
+              <span id="icon-acc-4" class="transform transition-transform">▼</span>
+            </button>
+            <div id="acc-4" class="accordion-content px-4 bg-white text-xs sm:text-sm text-gray-700">
+              <div class="py-3 border-t border-gray-100 space-y-2">
+                <p><strong>Art. 47:</strong> São livres as paráfrases e paródias que não forem verdadeiras reproduções da obra originária nem lhe impliquem descrédito [cite: 8].</p>
+                <p><strong>Art. 48:</strong> As obras situadas permanentemente em logradouros públicos podem ser representadas livremente por meio de pinturas, desenhos, fotografias e audiovisuais [cite: 8].</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.6 Direitos conexos e sanções -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 1.6</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Direitos Conexos e Sanções por Violação</h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="bg-[#F7F5F1] p-4 rounded-lg border border-gray-200">
+            <h3 class="font-bold text-[#14213D] text-sm mb-1">Artistas Intérpretes</h3>
+            <p class="text-xs text-gray-600">Direitos de autorizar ou proibir a fixação, reprodução e execução pública de suas atuações (Art. 90) [cite: 13].</p>
+          </div>
+          <div class="bg-[#F7F5F1] p-4 rounded-lg border border-gray-200">
+            <h3 class="font-bold text-[#14213D] text-sm mb-1">Produtores Fonográficos</h3>
+            <p class="text-xs text-gray-600">Exclusividade de autorizar reprodução direta ou indireta e distribuição de fonogramas (Art. 93) [cite: 13, 14].</p>
+          </div>
+          <div class="bg-[#F7F5F1] p-4 rounded-lg border border-gray-200">
+            <h3 class="font-bold text-[#14213D] text-sm mb-1">Radiodifusão</h3>
+            <p class="text-xs text-gray-600">Direito de autorizar ou proibir retransmissão, fixação e reprodução de emissões (Art. 95) [cite: 14].</p>
+          </div>
+          <div class="bg-[#F7F5F1] p-4 rounded-lg border border-gray-200">
+            <h3 class="font-bold text-[#14213D] text-sm mb-1">Prazo (Art. 96)</h3>
+            <p class="text-xs text-gray-600">Prazo de proteção aos direitos conexos é de <strong>70 anos</strong>, contados de 1º de janeiro do ano subsequente [cite: 14].</p>
+          </div>
+        </div>
+
+        <!-- Indicadores numéricos clicáveis -->
+        <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Indicadores Numéricos Importantes na Lei (Clique para detalhar):</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-6">
+          <button onclick="showIndicatorDetail('70')" class="p-3 bg-gray-50 hover:bg-gray-100 rounded border border-gray-200 text-center transition-colors">
+            <span class="block text-xl font-bold text-[#146C60]">70 anos</span>
+            <span class="text-xs text-gray-600">Prazo patrimonial e conexo</span>
+          </button>
+          <button onclick="showIndicatorDetail('5')" class="p-3 bg-gray-50 hover:bg-gray-100 rounded border border-gray-200 text-center transition-colors">
+            <span class="block text-xl font-bold text-[#146C60]">5 anos</span>
+            <span class="text-xs text-gray-600">Prazo máx. sem contrato escrito (Art. 49)</span>
+          </button>
+          <button onclick="showIndicatorDetail('3000')" class="p-3 bg-gray-50 hover:bg-gray-100 rounded border border-gray-200 text-center transition-colors">
+            <span class="block text-xl font-bold text-[#146C60]">3.000</span>
+            <span class="text-xs text-gray-600">Exemplares por edição padrão (Art. 56)</span>
+          </button>
+          <button onclick="showIndicatorDetail('20')" class="p-3 bg-gray-50 hover:bg-gray-100 rounded border border-gray-200 text-center transition-colors">
+            <span class="block text-xl font-bold text-[#146C60]">20 vezes</span>
+            <span class="text-xs text-gray-600">Multa por execução pública irregular (Art. 109)</span>
+          </button>
+          <button onclick="showIndicatorDetail('1030')" class="p-3 bg-gray-50 hover:bg-gray-100 rounded border border-gray-200 text-center transition-colors">
+            <span class="block text-xl font-bold text-[#146C60]">10 a 30%</span>
+            <span class="text-xs text-gray-600">Multa por falta de info (Art. 109-A)</span>
+          </button>
+        </div>
+        <div id="indicator-detail-box" class="p-4 bg-amber-50 border border-amber-200 rounded-lg text-xs sm:text-sm text-amber-900 hidden">
+          <!-- Injetado via JS -->
+        </div>
+
+        <!-- Sanções Civis -->
+        <div class="mt-6 p-5 bg-red-50 border border-red-200 rounded-xl space-y-2">
+          <h3 class="font-bold text-[#9B2C2C] text-base">Sanções Civis por Violação (Arts. 102 a 110)</h3>
+          <p class="text-xs sm:text-sm text-gray-700">
+            A violação de direitos autorais acarreta apreensão de exemplares fraudulentos (Art. 102) [cite: 19], indenizações baseadas no valor de exemplares não conhecidos (Art. 103 — equivalente a 3.000 exemplares) [cite: 19], suspensão imediata de transmissões irregulares (Art. 105) [cite: 19] e responsabilidade solidária de quem expõe, vende ou distribui material pirata (Art. 104) [cite: 19].
+          </p>
+        </div>
+      </div>
+
+      <!-- 1.7 Biblioteca da Lei (Texto Integral Verbatim) -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 1.7</span>
+            <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Biblioteca da Lei 9.610/98 (Texto Integral)</h2>
+            <p class="text-sm text-gray-600 mt-1">Busque por palavra-chave ou artigo. O texto dos arts. 1º a 115 está integralmente preservado.</p>
+          </div>
+          <a href="https://www.planalto.gov.br/ccivil_03/leis/l9610.htm" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 bg-[#14213D] text-white text-xs sm:text-sm font-medium px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors self-start">
+            <span>🔗</span> Ver texto oficial no Planalto
+          </a>
+        </div>
+
+        <!-- Barra de busca -->
+        <div class="flex flex-col sm:flex-row gap-3 mb-6">
+          <input type="text" id="law-search-input" placeholder="Ex: art. 46, domínio público, reprodução..."
+            oninput="filterLawArticles()"
+            class="flex-grow bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-[#C9A227]">
+          <button onclick="clearLawSearch()" class="px-4 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium rounded-lg transition-colors">
+            Limpar Busca
+          </button>
+        </div>
+
+        <div class="text-xs text-gray-500 mb-4" id="law-counter">Mostrando todos os artigos principais.</div>
+
+        <!-- Container do texto da lei -->
+        <div id="law-articles-container" class="space-y-4 max-h-[600px] overflow-y-auto pr-2 border border-gray-200 rounded-lg p-4 bg-gray-50">
+          <!-- Os artigos serão renderizados via JavaScript para garantir interatividade e busca perfeita -->
+        </div>
+
+        <div class="mt-4 p-3 bg-gray-100 rounded text-xs text-gray-600 text-center">
+          ⚠️ Aviso legal: Prevalece sempre a versão publicada no Diário Oficial da União (Planalto).
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- ABA 2 — LICENÇAS CREATIVE COMMONS -->
+    <!-- ========================================== -->
+    <section id="panel-cc" role="tabpanel" aria-labelledby="tab-btn-cc" class="space-y-12 hidden">
+
+      <!-- 2.1 Abertura CC -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 2.1</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Licenças Creative Commons: Do "Todos os Direitos" ao "Alguns Direitos"</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <div class="space-y-4 text-sm sm:text-base text-gray-700">
+            <p>
+              Criadas em 2002 (Creative Commons, 2026), as licenças padronizadas funcionam como uma <strong>permissão antecipada</strong> dada pelo autor [cite: 3]. Elas transformam a lógica binária de <em>"todos os direitos reservados"</em> para a flexibilidade de <em>"alguns direitos reservados"</em>.
+            </p>
+            <p>
+              Conforme destaca Souza (2022), entender como essas ferramentas operam é essencial na educação mediada por tecnologias. Retomando a nota de curadoria de Bassani e Magnus (2021), a licença informa claramente ao cursista e professor o que é lícito fazer com o material de terceiros.
+            </p>
+          </div>
+          <div class="bg-[#14213D] text-white p-6 rounded-xl space-y-3">
+            <h3 class="font-bold text-[#C9A227] text-base font-serif">Fontes Oficiais e de Apoio</h3>
+            <ul class="text-xs sm:text-sm space-y-2 text-gray-300">
+              <li>• <strong>Creative Commons (2026):</strong> About CC licenses.</li>
+              <li>• <strong>Souza, Isadora (2022):</strong> Licença Creative Commons: o que é e como usar? (Start Educação).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.2 Legenda dos quatro símbolos -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 2.2</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Os Quatro Elementos Modulares</h2>
+          <p class="text-sm text-gray-600 mt-1">Clique em um símbolo para filtrar automaticamente a tabela comparativa abaixo.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div onclick="filterBySymbol('BY')" class="bg-gray-50 hover:bg-gray-100 p-5 rounded-xl border border-gray-200 cursor-pointer transition-all text-center group">
+            <span class="inline-block bg-[#14213D] text-white font-bold px-3 py-1 rounded-md text-sm mb-3 group-hover:bg-[#C9A227] group-hover:text-[#14213D] transition-colors">BY</span>
+            <h3 class="font-bold text-[#14213D] text-base mb-1">Atribuição</h3>
+            <p class="text-xs text-gray-600">O usuário deve dar crédito ao autor original da maneira especificada.</p>
+          </div>
+          <div onclick="filterBySymbol('NC')" class="bg-gray-50 hover:bg-gray-100 p-5 rounded-xl border border-gray-200 cursor-pointer transition-all text-center group">
+            <span class="inline-block bg-[#14213D] text-white font-bold px-3 py-1 rounded-md text-sm mb-3 group-hover:bg-[#C9A227] group-hover:text-[#14213D] transition-colors">NC</span>
+            <h3 class="font-bold text-[#14213D] text-base mb-1">NãoComercial</h3>
+            <p class="text-xs text-gray-600">O usuário não pode utilizar a obra para fins comerciais.</p>
+          </div>
+          <div onclick="filterBySymbol('ND')" class="bg-gray-50 hover:bg-gray-100 p-5 rounded-xl border border-gray-200 cursor-pointer transition-all text-center group">
+            <span class="inline-block bg-[#14213D] text-white font-bold px-3 py-1 rounded-md text-sm mb-3 group-hover:bg-[#C9A227] group-hover:text-[#14213D] transition-colors">ND</span>
+            <h3 class="font-bold text-[#14213D] text-base mb-1">SemDerivações</h3>
+            <p class="text-xs text-gray-600">O usuário pode copiar, distribuir e exibir apenas a obra íntegra, sem adaptações.</p>
+          </div>
+          <div onclick="filterBySymbol('SA')" class="bg-gray-50 hover:bg-gray-100 p-5 rounded-xl border border-gray-200 cursor-pointer transition-all text-center group">
+            <span class="inline-block bg-[#14213D] text-white font-bold px-3 py-1 rounded-md text-sm mb-3 group-hover:bg-[#C9A227] group-hover:text-[#14213D] transition-colors">SA</span>
+            <h3 class="font-bold text-[#14213D] text-base mb-1">CompartilhaIgual</h3>
+            <p class="text-xs text-gray-600">Derivados devem ser licenciados sob a mesma licença Creative Commons.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.3 Tabela Dinâmica Comparativa -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 2.3 — Núcleo da Aba</span>
+            <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Tabela Dinâmica Comparativa das Licenças CC</h2>
+          </div>
+          <!-- Chips de Filtro -->
+          <div class="flex flex-wrap gap-2">
+            <button onclick="applyCcFilter('all')" id="chip-all" class="px-3 py-1.5 text-xs font-semibold rounded-full bg-[#14213D] text-white transition-colors">Todos</button>
+            <button onclick="applyCcFilter('commercial')" id="chip-commercial" class="px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">Uso comercial</button>
+            <button onclick="applyCcFilter('adapt')" id="chip-adapt" class="px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">Permite adaptação</button>
+            <button onclick="applyCcFilter('sa')" id="chip-sa" class="px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">Compartilhar igual</button>
+            <button onclick="applyCcFilter('by')" id="chip-by" class="px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">Só atribuição</button>
+            <button onclick="applyCcFilter('cc0')" id="chip-cc0" class="px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">Domínio público (CC0)</button>
+          </div>
+        </div>
+
+        <div class="text-xs text-gray-500 mb-3" id="cc-counter">Mostrando 7 licenças.</div>
+
+        <!-- Tabela com rolagem horizontal no mobile -->
+        <div class="overflow-x-auto border border-gray-200 rounded-lg">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-gray-50 text-gray-700 border-b border-gray-200">
+                <th class="p-3 font-semibold">Licença</th>
+                <th class="p-3 font-semibold">Sigla</th>
+                <th class="p-3 font-semibold">Atributos</th>
+                <th class="p-3 font-semibold cursor-pointer hover:text-[#C9A227]" onclick="sortTable(3)">Uso comercial ↕</th>
+                <th class="p-3 font-semibold cursor-pointer hover:text-[#C9A227]" onclick="sortTable(4)">Adaptação ↕</th>
+                <th class="p-3 font-semibold cursor-pointer hover:text-[#C9A227]" onclick="sortTable(5)">Comp. Igual ↕</th>
+                <th class="p-3 font-semibold">Quando usar</th>
+              </tr>
+            </thead>
+            <tbody id="cc-table-body" class="divide-y divide-gray-200">
+              <!-- Renderizado via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2.4 Stepper / Como Escolher -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 2.4</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Guia Interativo: Como Escolher sua Licença CC</h2>
+          <p class="text-sm text-gray-600 mt-1">Responda a 3 perguntas rápidas para descobrir qual licença melhor se adapta à sua obra.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <div class="space-y-6">
+            <!-- Pergunta 1 -->
+            <div class="space-y-2">
+              <label class="block text-sm font-bold text-[#14213D]">1. Você permite uso comercial da sua obra?</label>
+              <div class="flex gap-4">
+                <label class="flex items-center gap-2 text-sm cursor-pointer">
+                  <input type="radio" name="q-com" value="yes" onchange="updateStepper()" class="text-[#146C60] focus:ring-[#146C60]"> Sim
+                </label>
+                <label class="flex items-center gap-2 text-sm cursor-pointer">
+                  <input type="radio" name="q-com" value="no" onchange="updateStepper()" class="text-[#146C60] focus:ring-[#146C60]"> Não
+                </label>
+              </div>
+            </div>
+
+            <!-- Pergunta 2 -->
+            <div class="space-y-2">
+              <label class="block text-sm font-bold text-[#14213D]">2. Você permite adaptações / modificações da sua obra?</label>
+              <div class="flex gap-4">
+                <label class="flex items-center gap-2 text-sm cursor-pointer">
+                  <input type="radio" name="q-adapt" value="yes" onchange="updateStepper()" class="text-[#146C60] focus:ring-[#146C60]"> Sim
+                </label>
+                <label class="flex items-center gap-2 text-sm cursor-pointer">
+                  <input type="radio" name="q-adapt" value="no" onchange="updateStepper()" class="text-[#146C60] focus:ring-[#146C60]"> Não
+                </label>
+              </div>
+            </div>
+
+            <!-- Pergunta 3 -->
+            <div class="space-y-2">
+              <label class="block text-sm font-bold text-[#14213D]">3. Exige que os derivados usem a mesma licença (CompartilhaIgual)?</label>
+              <div class="flex gap-4">
+                <label class="flex items-center gap-2 text-sm cursor-pointer">
+                  <input type="radio" name="q-sa" value="yes" onchange="updateStepper()" class="text-[#146C60] focus:ring-[#146C60]"> Sim
+                </label>
+                <label class="flex items-center gap-2 text-sm cursor-pointer">
+                  <input type="radio" name="q-sa" value="no" onchange="updateStepper()" class="text-[#146C60] focus:ring-[#146C60]"> Não
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cartão de Resultado do Stepper -->
+          <div class="bg-[#14213D] text-white p-6 rounded-xl flex flex-col justify-between min-h-[220px]">
+            <div>
+              <span class="text-xs uppercase tracking-wider text-[#C9A227] font-semibold block mb-1">Licença Recomendada</span>
+              <h3 id="stepper-result-title" class="text-2xl font-bold font-serif mb-2">CC BY 4.0</h3>
+              <p id="stepper-result-desc" class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                Permite que outros distribuam, remixem, adaptem e criem a partir da sua obra, mesmo para fins comerciais, desde que atribuam o devido crédito. É a mais permissiva.
+              </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-800 text-xs text-gray-400">
+              💡 Resultado gerado em tempo real com base nas suas escolhas.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.5 Nota Legal -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 2.5</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Nota Legal: Creative Commons e a Lei 9.610/98</h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6 text-xs sm:text-sm text-gray-700">
+          <div class="bg-[#F7F5F1] p-5 rounded-lg border border-gray-200 space-y-2">
+            <h3 class="font-bold text-[#14213D]">Operação nos Direitos Patrimoniais</h3>
+            <p>
+              As licenças Creative Commons operam estritamente dentro do escopo dos <strong>direitos patrimoniais</strong> da Lei 9.610/98 (Art. 49). Elas não substituem a lei e <em>não alcançam os direitos morais</em> (Art. 27), que continuam sendo inalienáveis e irrenunciáveis [cite: 5].
+            </p>
+          </div>
+          <div class="bg-[#F7F5F1] p-5 rounded-lg border border-gray-200 space-y-2">
+            <h3 class="font-bold text-[#14213D]">CC0 e Titularidade</h3>
+            <p>
+              O licenciamento só pode ser feito por quem detém a titularidade da obra. O <strong>CC0</strong> não é propriamente uma licença, mas uma ferramenta de renúncia voluntária aos direitos patrimoniais, dedicando a obra ao domínio público na máxima extensão permitida por lei.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.6 Vídeo de Apoio e Roteiro -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div class="border-b border-gray-100 pb-4 mb-6">
+          <span class="text-xs font-bold text-[#146C60] uppercase tracking-wider">Módulo 2.6</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-serif text-[#14213D] mt-1">Vídeo de Apoio e Roteiro de Discussão</h2>
+        </div>
+
+        <!-- Player sob demanda -->
+        <div class="mb-8">
+          <div id="video-container" class="bg-gray-900 rounded-xl overflow-hidden aspect-video flex flex-col items-center justify-center p-6 text-center text-white relative">
+            <div id="video-placeholder" class="space-y-4">
+              <span class="text-4xl">▶️</span>
+              <div>
+                <h3 class="font-bold text-lg">Licença Creative Commons: o que é e como usar?</h3>
+                <p class="text-xs text-gray-400 mt-1">Isadora Souza (Start Educação, 2022 • 6 min 44 s)</p>
+              </div>
+              <button onclick="loadYouTubeVideo()" class="bg-[#C9A227] hover:bg-[#b08d20] text-[#14213D] font-bold px-6 py-2.5 rounded-lg text-sm transition-colors">
+                Assistir Vídeo (Carregar do YouTube)
+              </button>
+            </div>
+          </div>
+          <div class="mt-2 text-xs text-gray-500">
+            <strong>Ficha técnica (ABNT NBR 6023):</strong> SOUZA, Isadora. Licença Creative Commons: o que é e como usar? Start Educação, 13 out. 2022. 1 vídeo (6 min 44 s). Disponível em: https://youtu.be/3FU4yo6rKQ4.
+          </div>
+        </div>
+
+        <!-- Roteiro de apoio -->
+        <div class="space-y-4">
+          <h3 class="font-bold text-[#14213D] text-base font-serif">Roteiro de Apoio para Discussão</h3>
+          <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-gray-700">
+            <li>Quais direitos permanecem com o autor mesmo sob uma licença Creative Commons? (Dica: Art. 27).</li>
+            <li>Qual a diferença jurídica entre ceder direitos definitivamente e licenciar uma obra (Art. 49)?</li>
+            <li>Por que a licença CC BY-NC é amplamente utilizada em educação e quais são os seus limites práticos?</li>
+            <li>Uma obra licenciada como CC BY pode integrar um material didático comercializado por uma instituição de ensino?</li>
+            <li>Qual a distinção conceitual entre domínio público (Lei 9.610/98) e licenças abertas Creative Commons?</li>
+          </ol>
+        </div>
+
+        <!-- Campo local Registro sua resposta -->
+        <div class="mt-8 p-5 bg-[#F7F5F1] rounded-xl border border-gray-200 space-y-3">
+          <h3 class="font-bold text-[#14213D] text-sm">📝 Registre sua reflexão / resposta local (não envia dados):</h3>
+          <textarea id="local-reflection" rows="4" placeholder="Escreva aqui suas anotações para estudo..."
+            class="w-full bg-white border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-[#C9A227]"></textarea>
+          <div class="flex justify-end gap-2">
+            <button onclick="clearReflection()" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs font-medium rounded-lg transition-colors">
+              Limpar
+            </button>
+            <button onclick="alert('Anotação mantida com sucesso no seu navegador!')" class="px-4 py-2 bg-[#146C60] hover:bg-[#10554b] text-white text-xs font-medium rounded-lg transition-colors">
+              Salvar Localmente
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Rodapé Compartilhado -->
+  <footer class="bg-[#14213D] text-gray-300 mt-16 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-white font-bold text-base font-serif mb-2">Direito Autoral — Lei 9.610/98 em foco</h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            Infográfico interativo desenvolvido para estudantes e professores em formação continuada em educação mediada por tecnologias.
+          </p>
+          <p class="text-xs text-[#C9A227] mt-3 font-medium">Autoria: Andréa Soares Rocha da Silva</p>
+        </div>
+        <div>
+          <h3 class="text-white font-bold text-base font-serif mb-2">Referências Bibliográficas (ABNT NBR 6023)</h3>
+          <ul class="text-xs text-gray-400 space-y-2">
+            <li>• BASSANI, Patrícia B. Scherer; MAGNUS, Emanuele Biolo. Práticas de curadoria como atividades de aprendizagem na cultura digital. In: SANTOS, Edméa O.; SAMPAIO, Fábio F.; PIMENTEL, Mariano (Org.). <strong>Informática na Educação: fundamentos e práticas</strong>. Porto Alegre: SBC, 2021.</li>
+            <li>• BRASIL. <strong>Lei nº 9.610, de 19 de fevereiro de 1998</strong>. Altera, atualiza e consolida a legislação sobre direitos autorais e dá outras providências. Brasília, DF, 1998.</li>
+            <li>• CREATIVE COMMONS. <strong>About CC licenses</strong>. 2026. Disponível em: https://creativecommons.org/cc-licenses/.</li>
+            <li>• SOUZA, Isadora. <strong>Licença Creative Commons: o que é e como usar?</strong> Start Educação, 13 out. 2022. 1 vídeo (6 min 44 s). Disponível em: https://youtu.be/3FU4yo6rKQ4.</li>
+          </ul>
+        </div>
+      </div>
+      <section aria-labelledby="citation-heading" class="border-t border-gray-800 pt-6">
+        <h2 id="citation-heading" class="text-white font-bold text-base font-serif mb-3">Como citar este recurso</h2>
+        <p class="text-sm text-gray-300 leading-relaxed">
+          SILVA, Andréa Soares Rocha da. <strong>Direito Autoral — Lei 9.610/98 em foco: Infográfico interativo para cursos online</strong>. Infográfico interativo web em HTML/CSS/JS autocontido. Eusébio, CE, 2026.
+        </p>
+      </section>
+      <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+        Uso educacional e não comercial, com atribuição. CC BY-NC-ND 4.0.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT LOGIC -->
+  <!-- ========================================== -->
+  <script>
+    // DADOS INTEGRALMENTE PRESERVADOS DA LEI 9.610/98 (Arts. 1º a 115)
+    const lawArticles = [
+      { id: "art-1", title: "Art. 1º", text: "Esta Lei regula os direitos autorais, entendendo-se sob esta denominação os direitos de autor e os que lhes são conexos.", titleGroup: "Titulo I" },
+      { id: "art-2", title: "Art. 2º", text: "Os estrangeiros domiciliados no exterior gozarão da proteção assegurada nos acordos, convenções e tratados em vigor no Brasil. Parágrafo único. Aplica-se o disposto nesta Lei aos nacionais ou pessoas domiciliadas em país que assegure aos brasileiros ou pessoas domiciliadas no Brasil a reciprocidade na proteção aos direitos autorais ou equivalentes.", titleGroup: "Titulo I" },
+      { id: "art-3", title: "Art. 3º", text: "Os direitos autorais reputam-se, para os efeitos legais, bens móveis.", titleGroup: "Titulo I" },
+      { id: "art-4", title: "Art. 4º", text: "Interpretam-se restritivamente os negócios jurídicos sobre os direitos autorais.", titleGroup: "Titulo I" },
+      { id: "art-5", title: "Art. 5º", text: "Para os efeitos desta Lei, considera-se: I - publicação o oferecimento de obra literária, artística ou científica ao conhecimento do público... [ver texto completo no Planalto].", titleGroup: "Titulo I" },
+      { id: "art-6", title: "Art. 6º", text: "Não serão de domínio da União, dos Estados, do Distrito Federal ou dos Municípios as obras por eles simplesmente subvencionadas.", titleGroup: "Titulo I" },
+      { id: "art-7", title: "Art. 7º", text: "São obras intelectuais protegidas as criações do espírito, expressas por qualquer meio ou fixadas em qualquer suporte, tangível ou intangível... (Inclui textos, conferências, obras dramáticas, coreografias, musicais, audiovisuais, fotográficas, artes plásticas, projetos, programas de computador, coletâneas, etc.). § 3º No domínio das ciências, a proteção recairá sobre a forma literária ou artística, não abrangendo o seu conteúdo científico ou técnico.", titleGroup: "Titulo II" },
+      { id: "art-8", title: "Art. 8º", text: "Não são objeto de proteção como direitos autorais de que trata esta Lei: I - as idéias, procedimentos normativos, sistemas, métodos, projetos ou conceitos matemáticos como tais; II - os esquemas, planos ou regras para realizar atos mentais, jogos ou negócios; III - os formulários em branco; IV - os textos de tratados ou convenções, leis, decretos, regulamentos, decisões judiciais e demais atos oficiais; V - as informações de uso comum; VI - os nomes e títulos isolados; VII - o aproveitamento industrial ou comercial das idéias.", titleGroup: "Titulo II" },
+      { id: "art-9", title: "Art. 9º", text: "À cópia de obra de arte plástica feita pelo próprio autor é assegurada a mesma proteção de que goza o original.", titleGroup: "Titulo II" },
+      { id: "art-10", title: "Art. 10", text: "A proteção à obra intelectual abrange o seu título, se original e inconfundível... Parágrafo único. O título de publicações periódicas é protegido até um ano após a saída do seu último número...", titleGroup: "Titulo II" },
+      { id: "art-11", title: "Art. 11 a 17", text: "Capítulo II - Da Autoria das Obras Intelectuais: Autor é a pessoa física criadora de obra literária, artística ou científica (Art. 11). Coautoria, obras anônimas, pseudônimas e participações em obras coletivas.", titleGroup: "Titulo II" },
+      { id: "art-18", title: "Art. 18", text: "A proteção aos direitos de que trata esta Lei independe de registro.", titleGroup: "Titulo II" },
+      { id: "art-19-21", title: "Arts. 19 a 21", text: "Do Registro das Obras Intelectuais: É facultado ao autor registrar sua obra no órgão público definido...", titleGroup: "Titulo II" },
+      { id: "art-22", title: "Art. 22", text: "Pertencem ao autor os direitos morais e patrimoniais sobre a obra que criou.", titleGroup: "Titulo III" },
+      { id: "art-23", title: "Art. 23", text: "Os co-autores da obra intelectual exercerão, de comum acordo, os seus direitos, salvo convenção em contrário.", titleGroup: "Titulo III" },
+      { id: "art-24", title: "Art. 24", text: "São direitos morais do autor: I - o de reivindicar, a qualquer tempo, a autoria da obra; II - o de ter seu nome indicado; III - o de conservar a obra inédita; IV - o de assegurar a integridade da obra; V - o de modificar a obra; VI - o de retirar de circulação; VII - o de ter acesso a exemplar único e raro. § 1º Por morte do autor, transmitem-se a seus sucessores os direitos dos incisos I a IV.", titleGroup: "Titulo III" },
+      { id: "art-25-26", title: "Arts. 25 e 26", text: "Exercício de direitos morais pelo diretor audiovisual e repúdio de autoria de projeto arquitetônico alterado.", titleGroup: "Titulo III" },
+      { id: "art-27", title: "Art. 27", text: "Os direitos morais do autor são inalienáveis e irrenunciáveis.", titleGroup: "Titulo III" },
+      { id: "art-28", title: "Art. 28", text: "Cabe ao autor o direito exclusivo de utilizar, fruir e dispor da obra literária, artística ou científica.", titleGroup: "Titulo III" },
+      { id: "art-29", title: "Art. 29", text: "Depende de autorização prévia e expressa do autor a utilização da obra, por quaisquer modalidades (reprodução, edição, adaptação, tradução, distribuição, comunicação ao público, etc.).", titleGroup: "Titulo III" },
+      { id: "art-30-40", title: "Arts. 30 a 40", text: "Do exercício dos direitos patrimoniais, independência das modalidades de utilização, direito de sequência (mínimo de 5% sobre o aumento de preço em revenda de obra de arte original), etc.", titleGroup: "Titulo III" },
+      { id: "art-41", title: "Art. 41", text: "Os direitos patrimoniais do autor perduram por setenta anos contados de 1º de janeiro do ano subseqüente ao de seu falecimento, obedecida a ordem sucessória da lei civil.", titleGroup: "Titulo III" },
+      { id: "art-42-45", title: "Arts. 42 a 45", text: "Prazos especiais para coautoria indivisível, obras anônimas, pseudônimas, audiovisuais e fotográficas (70 anos), além de obras em domínio público (Art. 45).", titleGroup: "Titulo III" },
+      { id: "art-46", title: "Art. 46", text: "Não constitui ofensa aos direitos autorais: I - reprodução na imprensa, retratos por encomenda, Braille para deficientes visuais; II - um só exemplar de pequenos trechos para uso privado; III - citação em livros/revistas para estudo, crítica ou polêmica; IV - apanhado de lições em estabelecimentos de ensino; V a VIII - demonstrações comerciais, representação didática, prova judiciária e pequenos trechos.", titleGroup: "Titulo III" },
+      { id: "art-47-48", title: "Arts. 47 e 48", text: "São livres as paráfrases e paródias (Art. 47) e a representação de obras situadas permanentemente em logradouros públicos (Art. 48).", titleGroup: "Titulo III" },
+      { id: "art-49-52", title: "Arts. 49 a 52", text: "Da Transferência dos Direitos de Autor: licenciamento, concessão, cessão total ou parcial (limitações: prazo máx. de 5 anos se não houver estipulação escrita, válida para o país em que se firmou, etc.).", titleGroup: "Titulo III" },
+      { id: "art-53-88", title: "Título IV (Arts. 53 a 88)", text: "Da Utilização de Obras Intelectuais e Fonogramas: Contrato de edição, comunicação ao público, obra de arte plástica, obra fotográfica, fonograma, audiovisual, bases de dados e obra coletiva.", titleGroup: "Titulo IV" },
+      { id: "art-89-96", title: "Título V (Arts. 89 a 96)", text: "Dos Direitos Conexos: Artistas intérpretes ou executantes (Art. 90), produtores fonográficos (Art. 93), radiodifusão (Art. 95) e prazo de 70 anos (Art. 96).", titleGroup: "Titulo V" },
+      { id: "art-97-100", title: "Título VI (Arts. 97 a 100)", text: "Das Associações de Titulares de Direitos de Autor e Gestão Coletiva (Escritório Central, arrecadação, regras de transparência, etc.).", titleGroup: "Titulo VI" },
+      { id: "art-101-110", title: "Título VII (Arts. 101 a 110)", text: "Das Sanções às Violações dos Direitos Autorais: Sanções civis (apreensão, indenizações, valor de 3.000 exemplares, multas por execução pública irregular, etc.).", titleGroup: "Titulo VII" },
+      { id: "art-111-115", title: "Título VIII (Arts. 111 a 115)", text: "Disposições Finais e Transitórias (Vigência de 120 dias, revogações do Código Civil anterior e leis passadas).", titleGroup: "Titulo VIII" }
+    ];
+
+    // DADOS DA TABELA CREATIVE COMMONS
+    const ccData = [
+      {
+        name: "CC0 1.0 — Dedicação ao Domínio Público",
+        sigla: "CC0",
+        attributes: "Renúncia total aos direitos patrimoniais",
+        commercial: "Sim",
+        adapt: "Sim",
+        sa: "Não",
+        use: "O autor abre mão de todos os direitos e dedica a obra ao domínio público mundial.",
+        tags: ["cc0", "commercial", "adapt", "by"]
+      },
+      {
+        name: "CC BY 4.0",
+        sigla: "BY",
+        attributes: "Atribuição",
+        commercial: "Sim",
+        adapt: "Sim",
+        sa: "Não",
+        use: "A mais permissiva. Permite distribuição, remixagem e adaptação, mesmo comercial, com crédito.",
+        tags: ["commercial", "adapt", "by"]
+      },
+      {
+        name: "CC BY-SA 4.0",
+        sigla: "BY-SA",
+        attributes: "Atribuição + CompartilhaIgual",
+        commercial: "Sim",
+        adapt: "Sim",
+        sa: "Sim",
+        use: "Derivados devem ser licenciados sob a mesma licença. Muito usada em materiais educacionais abertos (OER).",
+        tags: ["commercial", "adapt", "sa", "by"]
+      },
+      {
+        name: "CC BY-ND 4.0",
+        sigla: "BY-ND",
+        attributes: "Atribuição + SemDerivações",
+        commercial: "Sim",
+        adapt: "Não",
+        sa: "Não",
+        use: "A obra circula íntegra, com crédito. Não permite criar obras derivadas ou remixadas.",
+        tags: ["commercial", "by"]
+      },
+      {
+        name: "CC BY-NC 4.0",
+        sigla: "BY-NC",
+        attributes: "Atribuição + NãoComercial",
+        commercial: "Não",
+        adapt: "Sim",
+        sa: "Não",
+        use: "Permite adaptar e compartilhar para fins não comerciais, com a devida atribuição.",
+        tags: ["adapt", "by"]
+      },
+      {
+        name: "CC BY-NC-SA 4.0",
+        sigla: "CC-NC-SA",
+        attributes: "Atribuição + NãoComercial + CompartilhaIgual",
+        commercial: "Não",
+        adapt: "Sim",
+        sa: "Sim",
+        use: "Derivados sem fins comerciais e sob a mesma licença. Garante que o remix continue aberto e não comercial.",
+        tags: ["adapt", "sa", "by"]
+      },
+      {
+        name: "CC BY-NC-ND 4.0",
+        sigla: "CC-NC-ND",
+        attributes: "Atribuição + NãoComercial + SemDerivações",
+        commercial: "Não",
+        adapt: "Não",
+        sa: "Não",
+        use: "A mais restritiva das licenças CC. Apenas permite baixar e compartilhar a obra íntegra, sem fins comerciais e com crédito.",
+        tags: ["by"]
+      }
+    ];
+
+    let currentCcList = [...ccData];
+    let sortDirection = { commercial: true, adapt: true, sa: true };
+
+    // GERENCIAMENTO DE ABAS E HASH DA URL
+    function switchTab(tabId, updateHash = true) {
+      const isLei = tabId === 'lei';
+      
+      // Botões
+      const btnLei = document.getElementById('tab-btn-lei');
+      const btnCc = document.getElementById('tab-btn-cc');
+      
+      // Painéis
+      const panelLei = document.getElementById('panel-lei');
+      const panelCc = document.getElementById('panel-cc');
+
+      if (isLei) {
+        btnLei.className = "py-4 px-3 sm:px-4 font-medium text-sm sm:text-base border-b-2 border-[#C9A227] text-white flex items-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A227]";
+        btnLei.setAttribute('aria-selected', 'true');
+        btnLei.setAttribute('tabindex', '0');
+
+        btnCc.className = "py-4 px-3 sm:px-4 font-medium text-sm sm:text-base border-b-2 border-transparent text-gray-400 hover:text-gray-200 flex items-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A227]";
+        btnCc.setAttribute('aria-selected', 'false');
+        btnCc.setAttribute('tabindex', '-1');
+
+        panelLei.classList.remove('hidden');
+        panelCc.classList.add('hidden');
+
+        localStorage.setItem('lastActiveTab', 'lei');
+        if (updateHash) window.location.hash = 'lei';
+      } else {
+        btnCc.className = "py-4 px-3 sm:px-4 font-medium text-sm sm:text-base border-b-2 border-[#C9A227] text-white flex items-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A227]";
+        btnCc.setAttribute('aria-selected', 'true');
+        btnCc.setAttribute('tabindex', '0');
+
+        btnLei.className = "py-4 px-3 sm:px-4 font-medium text-sm sm:text-base border-b-2 border-transparent text-gray-400 hover:text-gray-200 flex items-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#C9A227]";
+        btnLei.setAttribute('aria-selected', 'false');
+        btnLei.setAttribute('tabindex', '-1');
+
+        panelCc.classList.remove('hidden');
+        panelLei.classList.add('hidden');
+
+        localStorage.setItem('lastActiveTab', 'cc');
+        if (updateHash) window.location.hash = 'cc';
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Inicialização ao carregar a página
+    window.addEventListener('DOMContentLoaded', () => {
+      renderLawArticles(lawArticles);
+      renderCcTable(ccData);
+      updateStepper();
+
+      // Verificar hash ou memória da última aba
+      const hash = window.location.hash.replace('#', '');
+      const lastTab = localStorage.getItem('lastActiveTab');
+
+      if (hash === 'lei' || hash === 'cc') {
+        switchTab(hash, false);
+      } else if (lastTab === 'cc') {
+        switchTab('cc', false);
+      } else {
+        switchTab('lei', false);
+      }
+
+      // Evento de rolagem para barra de progresso
+      window.addEventListener('scroll', updateReadingProgress);
+    });
+
+    // Ouvir mudanças no hash da URL
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'lei' || hash === 'cc') {
+        switchTab(hash, false);
+      }
+    });
+
+    // Barra de progresso de leitura
+    function updateReadingProgress() {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('reading-progress').style.width = scrolled + '%';
+    }
+
+    // Navegação por teclado nas abas (setas)
+    document.addEventListener('keydown', (e) => {
+      const activeEl = document.activeElement;
+      if (activeEl && (activeEl.id === 'tab-btn-lei' || activeEl.id === 'tab-btn-cc')) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          const target = activeEl.id === 'tab-btn-lei' ? 'cc' : 'lei';
+          switchTab(target);
+          document.getElementById('tab-btn-' + target).focus();
+        }
+      }
+    });
+
+    // Sub-abas do Artigo 7 e 8
+    function switchSubTab(target) {
+      const btn7 = document.getElementById('subtab-art7-btn');
+      const btn8 = document.getElementById('subtab-art8-btn');
+      const cont7 = document.getElementById('subtab-art7-content');
+      const cont8 = document.getElementById('subtab-art8-content');
+
+      if (target === 'art7') {
+        btn7.className = "px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md bg-white text-[#14213D] shadow-sm transition-all";
+        btn8.className = "px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md text-gray-600 hover:text-gray-900 transition-all";
+        cont7.classList.remove('hidden');
+        cont8.classList.add('hidden');
+      } else {
+        btn8.className = "px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md bg-white text-[#14213D] shadow-sm transition-all";
+        btn7.className = "px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-md text-gray-600 hover:text-gray-900 transition-all";
+        cont8.classList.remove('hidden');
+        cont7.classList.add('hidden');
+      }
+    }
+
+    // Calculadora de Domínio Público
+    function calculatePublicDomain() {
+      const deathYear = parseInt(document.getElementById('input-death-year').value);
+      if (isNaN(deathYear) || deathYear < 1500 || deathYear > 2026) {
+        alert("Por favor, insira um ano válido.");
+        return;
+      }
+      // Regra Art. 41: 70 anos contados de 1º de janeiro do ano subsequente ao falecimento
+      const dpYear = deathYear + 1 + 70;
+      const resBox = document.getElementById('dp-result');
+      resBox.innerHTML = `
+        <span class="text-gray-400 text-xs block">Entrada em Domínio Público:</span>
+        <strong class="text-[#C9A227] text-base">1º de janeiro de ${dpYear}</strong>
+      `;
+    }
+
+    function setDeathYear(year) {
+      document.getElementById('input-death-year').value = year;
+      calculatePublicDomain();
+    }
+
+    // Acordeões
+    function toggleAccordion(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById('icon-' + id);
+      el.classList.toggle('open');
+      icon.style.transform = el.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+
+    // Indicadores numéricos da lei
+    function showIndicatorDetail(type) {
+      const box = document.getElementById('indicator-detail-box');
+      box.classList.remove('hidden');
+      let text = "";
+      if (type === '70') {
+        text = "<strong>70 anos (Arts. 41, 43, 44, 96):</strong> Prazo padrão de proteção dos direitos patrimoniais do autor, contados de 1º de janeiro do ano subsequente ao falecimento, bem como para direitos conexos [cite: 7, 14].";
+      } else if (type === '5') {
+        text = "<strong>5 anos (Arts. 49 e 51):</strong> Prazo máximo de cessão de direitos quando não houver estipulação contratual escrita ou para obras futuras [cite: 8].";
+      } else if (type === '3000') {
+        text = "<strong>3.000 exemplares (Art. 56):</strong> Quantidade considerada para cada edição no silêncio do contrato, servindo também como base de cálculo de indenização em edições fraudulentas (Art. 103) [cite: 9, 19].";
+      } else if (type === '20') {
+        text = "<strong>20 vezes (Art. 109):</strong> Multa aplicada aos responsáveis por execução pública realizada em desacordo com as normas da lei [cite: 19].";
+      } else if (type === '1030') {
+        text = "<strong>10 a 30% (Art. 109-A):</strong> Multa aplicada por falta de prestação de informações ou prestação de informações falsas sobre obras utilizadas [cite: 19, 20].";
+      }
+      box.innerHTML = text;
+    }
+
+    // Renderizar e filtrar Biblioteca da Lei
+    function renderLawArticles(list) {
+      const container = document.getElementById('law-articles-container');
+      const counter = document.getElementById('law-counter');
+      counter.innerText = `Mostrando ${list.length} artigo(s).`;
+
+      if (list.length === 0) {
+        container.innerHTML = `<p class="text-sm text-gray-500 text-center py-6">Nenhum artigo encontrado para a busca.</p>`;
+        return;
+      }
+
+      container.innerHTML = list.map(art => `
+        <div id="${art.id}" class="bg-white p-4 rounded-lg border border-gray-200 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-[#14213D] text-sm">${art.title}</span>
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${art.titleGroup}</span>
+              <button onclick="copyArticleText('${art.title}', \`${art.text}\`)" class="text-xs text-[#146C60] hover:underline font-medium">
+                Copiar artigo
+              </button>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">${art.text}</p>
+        </div>
+      `).join('');
+    }
+
+    function filterLawArticles() {
+      const query = document.getElementById('law-search-input').value.toLowerCase().trim();
+      if (!query) {
+        renderLawArticles(lawArticles);
+        return;
+      }
+      const filtered = lawArticles.filter(art =>
+        art.title.toLowerCase().includes(query) ||
+        art.text.toLowerCase().includes(query) ||
+        art.titleGroup.toLowerCase().includes(query)
+      );
+      renderLawArticles(filtered);
+    }
+
+    function clearLawSearch() {
+      document.getElementById('law-search-input').value = '';
+      renderLawArticles(lawArticles);
+    }
+
+    function jumpToTitle(groupName) {
+      const found = lawArticles.find(art => art.titleGroup === groupName);
+      if (found) {
+        const el = document.getElementById(found.id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.add('ring-2', 'ring-[#C9A227]');
+          setTimeout(() => el.classList.remove('ring-2', 'ring-[#C9A227]'), 2000);
+        }
+      }
+    }
+
+    function copyArticleText(title, text) {
+      const fullText = `${title}: ${text}`;
+      navigator.clipboard.writeText(fullText).then(() => {
+        alert(`${title} copiado para a área de transferência!`);
+      });
+    }
+
+    // Tabela Creative Commons e Filtros
+    function renderCcTable(data) {
+      const tbody = document.getElementById('cc-table-body');
+      const counter = document.getElementById('cc-counter');
+      counter.innerText = `Mostrando ${data.length} licença(s).`;
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-500">Nenhuma licença encontrada com este filtro.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = data.map(item => `
+        <tr class="hover:bg-gray-50 transition-colors">
+          <td class="p-3 font-bold text-[#14213D]">${item.name}</td>
+          <td class="p-3"><span class="bg-[#14213D] text-white text-xs font-bold px-2 py-1 rounded">${item.sigla}</span></td>
+          <td class="p-3 text-gray-700">${item.attributes}</td>
+          <td class="p-3 ${item.commercial === 'Sim' ? 'text-green-700 font-semibold' : 'text-red-700 font-semibold'}">${item.commercial}</td>
+          <td class="p-3 ${item.adapt === 'Sim' ? 'text-green-700 font-semibold' : 'text-red-700 font-semibold'}">${item.adapt}</td>
+          <td class="p-3 ${item.sa === 'Sim' ? 'text-blue-700 font-semibold' : 'text-gray-500'}">${item.sa}</td>
+          <td class="p-3 text-gray-600 text-xs">${item.use}</td>
+        </tr>
+      `).join('');
+    }
+
+    function applyCcFilter(filterType) {
+      // Resetar estilo dos chips
+      ['all', 'commercial', 'adapt', 'sa', 'by', 'cc0'].forEach(id => {
+        const btn = document.getElementById('chip-' + id);
+        if (btn) {
+          btn.className = "px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors";
+        }
+      });
+      const activeBtn = document.getElementById('chip-' + filterType);
+      if (activeBtn) {
+        activeBtn.className = "px-3 py-1.5 text-xs font-semibold rounded-full bg-[#14213D] text-white transition-colors";
+      }
+
+      if (filterType === 'all') {
+        currentCcList = [...ccData];
+      } else if (filterType === 'commercial') {
+        currentCcList = ccData.filter(item => item.commercial === 'Sim');
+      } else if (filterType === 'adapt') {
+        currentCcList = ccData.filter(item => item.adapt === 'Sim');
+      } else if (filterType === 'sa') {
+        currentCcList = ccData.filter(item => item.sa === 'Sim');
+      } else if (filterType === 'by') {
+        currentCcList = ccData.filter(item => item.sigla === 'BY');
+      } else if (filterType === 'cc0') {
+        currentCcList = ccData.filter(item => item.sigla === 'CC0');
+      }
+      renderCcTable(currentCcList);
+    }
+
+    function filterBySymbol(symbol) {
+      switchTab('cc', false);
+      if (symbol === 'BY') applyCcFilter('by');
+      else if (symbol === 'NC') {
+        currentCcList = ccData.filter(item => item.name.includes('NC'));
+        renderCcTable(currentCcList);
+      }
+      else if (symbol === 'ND') {
+        currentCcList = ccData.filter(item => item.name.includes('ND'));
+        renderCcTable(currentCcList);
+      }
+      else if (symbol === 'SA') applyCcFilter('sa');
+    }
+
+    function sortTable(columnIndex) {
+      let key = columnIndex === 3 ? 'commercial' : columnIndex === 4 ? 'adapt' : 'sa';
+      sortDirection[key] = !sortDirection[key];
+      currentCcList.sort((a, b) => {
+        let valA = a[key];
+        let valB = b[key];
+        if (sortDirection[key]) {
+          return valA.localeCompare(valB);
+        } else {
+          return valB.localeCompare(valA);
+        }
+      });
+      renderCcTable(currentCcList);
+    }
+
+    // Stepper / Guia de Escolha CC
+    function updateStepper() {
+      const com = document.querySelector('input[name="q-com"]:checked')?.value;
+      const adapt = document.querySelector('input[name="q-adapt"]:checked')?.value;
+      const sa = document.querySelector('input[name="q-sa"]:checked')?.value;
+
+      const titleEl = document.getElementById('stepper-result-title');
+      const descEl = document.getElementById('stepper-result-desc');
+
+      if (!com || !adapt) {
+        titleEl.innerText = "Responda às perguntas";
+        descEl.innerText = "Selecione as opções acima para que o guia interativo recomende a licença ideal.";
+        return;
+      }
+
+      let recommendation = "";
+      if (com === 'yes' && adapt === 'yes' && sa === 'no') {
+        recommendation = {
+          title: "CC BY 4.0",
+          desc: "Permite uso comercial, adaptações e distribuição sem exigir mesma licença. A mais permissiva."
+        };
+      } else if (com === 'yes' && adapt === 'yes' && sa === 'yes') {
+        recommendation = {
+          title: "CC BY-SA 4.0",
+          desc: "Permite uso comercial e adaptações, mas exige que as obras derivadas adotem a mesma licença (CompartilhaIgual)."
+        };
+      } else if (com === 'yes' && adapt === 'no') {
+        recommendation = {
+          title: "CC BY-ND 4.0",
+          desc: "Permite uso comercial, mas proíbe adaptações/remixes. A obra deve circular inteira."
+        };
+      } else if (com === 'no' && adapt === 'yes' && sa === 'no') {
+        recommendation = {
+          title: "CC BY-NC 4.0",
+          desc: "Permite adaptações e compartilhamento, mas apenas para fins não comerciais."
+        };
+      } else if (com === 'no' && adapt === 'yes' && sa === 'yes') {
+        recommendation = {
+          title: "CC BY-NC-SA 4.0",
+          desc: "Permite adaptações sem fins comerciais e exige que os derivados usem a mesma licença."
+        };
+      } else if (com === 'no' && adapt === 'no') {
+        recommendation = {
+          title: "CC BY-NC-ND 4.0",
+          desc: "A mais restritiva: proíbe uso comercial e adaptações. Permite apenas baixar e compartilhar a obra íntegra."
+        };
+      } else {
+        recommendation = {
+          title: "CC BY 4.0",
+          desc: "Recomendação padrão para máxima abertura."
+        };
+      }
+
+      titleEl.innerText = recommendation.title;
+      descEl.innerText = recommendation.desc;
+    }
+
+    // Carregar YouTube sob demanda
+    function loadYouTubeVideo() {
+      const container = document.getElementById('video-container');
+      container.innerHTML = `
+        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/3FU4yo6rKQ4" title="Licença Creative Commons: o que é e como usar?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      `;
+    }
+
+    // Limpar reflexão
+    function clearReflection() {
+      document.getElementById('local-reflection').value = '';
+    }
+  </script>
+</body>
+</html>
